@@ -4,6 +4,13 @@
 
 message(STATUS "QGC: Adding custom branding plugin")
 
+# Multi-config generators (Visual Studio/Xcode) should not use CMAKE_BUILD_TYPE.
+# Keeping it empty ensures upstream MockLink debug-only gating behaves correctly.
+if(CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE STREQUAL "")
+    message(STATUS "QGC: Clearing CMAKE_BUILD_TYPE for multi-config generator: ${CMAKE_BUILD_TYPE}")
+    set(CMAKE_BUILD_TYPE "" CACHE STRING "Build type (single-config generators only)" FORCE)
+endif()
+
 # Custom Android package overlay.
 if(ANDROID)
     set(CUSTOM_ANDROID_DIR "${CMAKE_SOURCE_DIR}/custom/android")

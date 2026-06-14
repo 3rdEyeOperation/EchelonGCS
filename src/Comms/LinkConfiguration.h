@@ -75,7 +75,9 @@ public:
         TypeUdp,        ///< UDP Link
         TypeTcp,        ///< TCP Link
         TypeBluetooth,  ///< Bluetooth Link
+#ifdef QT_DEBUG
         TypeMock,       ///< Mock Link for Unitesting
+#endif
         TypeLogReplay,
         TypeLast        // Last type value (type >= TypeLast == invalid)
     };
