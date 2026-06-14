@@ -84,8 +84,16 @@ QUrl CustomOverrideInterceptor::intercept(const QUrl &url, QQmlAbstractUrlInterc
     switch (type) {
     case QQmlAbstractUrlInterceptor::QmlFile:
     case QQmlAbstractUrlInterceptor::UrlString:
+    {
+        QString origPath;
         if (url.scheme() == QStringLiteral("qrc")) {
-            const QString origPath = url.path();
+            origPath = url.path();
+        } else if (url.scheme().isEmpty()) {
+            // QML image sources commonly come in as plain "/res/..." paths.
+            origPath = url.path().isEmpty() ? url.toString() : url.path();
+        }
+
+        if (!origPath.isEmpty() && origPath.startsWith('/')) {
             const QString overrideRes = QStringLiteral(":/Custom%1").arg(origPath);
             if (QFile::exists(overrideRes)) {
                 const QString relPath = overrideRes.mid(2);
@@ -96,6 +104,7 @@ QUrl CustomOverrideInterceptor::intercept(const QUrl &url, QQmlAbstractUrlInterc
             }
         }
         break;
+    }
     default:
         break;
     }
