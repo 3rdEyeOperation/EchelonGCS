@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/Custom/res">
+        <file alias="QGCLogoArrow.svg">res/Images/QGCLogoArrow.svg</file>
+        <file alias="QGCLogoBlack.svg">res/Images/QGCLogoBlack.svg</file>
+        <file alias="QGCLogoFull.svg">res/Images/QGCLogoFull.svg</file>
+        <file alias="QGCLogoWhite.svg">res/Images/QGCLogoWhite.svg</file>
+        <file alias="qgroundcontrol.ico">res/icons/custom_qgroundcontrol.ico</file>
+    </qresource>
+</RCC>
