@@ -47,6 +47,13 @@ set(CUSTOM_SOURCES
     CACHE INTERNAL "" FORCE
 )
 
+if(WIN32)
+    list(APPEND CUSTOM_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Echelon.rc
+    )
+    set(CUSTOM_SOURCES ${CUSTOM_SOURCES} CACHE INTERNAL "" FORCE)
+endif()
+
 # No extra libraries are required for branding-only customization.
 set(CUSTOM_LIBRARIES
     CACHE INTERNAL "" FORCE
